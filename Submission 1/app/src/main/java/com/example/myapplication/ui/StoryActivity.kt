@@ -1,11 +1,14 @@
 package com.example.myapplication.ui
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,14 +18,12 @@ import com.example.myapplication.helper.TokenPreference
 import com.example.myapplication.model.domain.GetStoryResponse
 import com.example.myapplication.model.domain.LoginResponse
 import com.example.myapplication.network.ApiConfig
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class StoryActivity : AppCompatActivity() {
     private lateinit var rvStories: RecyclerView
-    private lateinit var fabAdd: FloatingActionButton
     private lateinit var mTokenPreference: TokenPreference
     private lateinit var mSessionPreference: SessionPreference
 
@@ -41,30 +42,20 @@ class StoryActivity : AppCompatActivity() {
         getStories(token)
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.option_menu, menu)
-//
-//        return true
-//    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.menu_logout -> {
-//                val settings1: SharedPreferences =
-//                    this@StoryActivity.getSharedPreferences("token_pref", Context.MODE_PRIVATE)
-//                settings1.edit().clear().apply()
-//
-//                val settings2: SharedPreferences =
-//                    this@StoryActivity.getSharedPreferences("session_pref", Context.MODE_PRIVATE)
-//                settings2.edit().clear().apply()
-//
-//                finish()
-//
-//                startActivity(Intent(this, LoginActivity::class.java))
-//            }
-//        }
-//        return true
-//    }
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_favorite -> {
+                startActivity(Intent(this, FavoriteStoryActivity::class.java))
+            }
+        }
+        return true
+    }
 
     private fun getStories(token: String) {
         showLoading(true)
@@ -92,7 +83,7 @@ class StoryActivity : AppCompatActivity() {
 
                         }
                     } else {
-                        Log.d("Jumlah: ", "null")
+                        Log.d("GetStories", "null")
                     }
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
@@ -115,34 +106,21 @@ class StoryActivity : AppCompatActivity() {
                 response: Response<LoginResponse>
             ) {
                 showLoading(false)
+
                 val responseBody = response.body()
+
                 if (response.isSuccessful && responseBody != null) {
-                    Log.e(ContentValues.TAG, "onSuccess: ${response.message()}")
+                    Log.e(TAG, "onSuccess: ${response.message()}")
 
                     mTokenPreference.setToken(responseBody.loginResult.token)
                     mSessionPreference.setSession()
-
-//                    val storyIntent = Intent(this@LoginActivity, StoryActivity::class.java)
-//                    startActivity(storyIntent)
-                } else {
-//                    Toast.makeText(
-//                        this@LoginActivity,
-//                        "Email atau password tidak sesuai",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    emailEditText.error = response.message()
-//                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
-//
-//                    emailEditText.text?.clear()
-//                    passwordEditText.text?.clear()
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 showLoading(false)
-//                Toast.makeText(this@LoginActivity, t.message, Toast.LENGTH_SHORT)
-//                    .show()
-//                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+                Toast.makeText(this@StoryActivity, t.message, Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }

@@ -16,15 +16,6 @@ import java.text.SimpleDateFormat
 
 class StoryAdapter(private val listStories: List<ListStoryItem>) :
     RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
-    private lateinit var onItemClickCallback: OnItemClickCallback
-
-    interface OnItemClickCallback {
-        fun onItemClicked(data: ListStoryItem)
-    }
-
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) =
         ViewHolder(
@@ -34,6 +25,7 @@ class StoryAdapter(private val listStories: List<ListStoryItem>) :
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         Glide.with(viewHolder.itemView.context)
             .load(listStories[position].photoUrl)
+            .placeholder(R.drawable.loading)
             .into(viewHolder.ivImage)
 
         viewHolder.tvName.text = listStories[position].name

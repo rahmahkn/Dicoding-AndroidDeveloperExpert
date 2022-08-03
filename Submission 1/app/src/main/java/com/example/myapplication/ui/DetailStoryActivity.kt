@@ -1,10 +1,12 @@
 package com.example.myapplication.ui
 
 import android.os.Bundle
+import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityDetailStoryBinding
 
 class DetailStoryActivity : AppCompatActivity() {
@@ -26,10 +28,25 @@ class DetailStoryActivity : AppCompatActivity() {
 
         Glide.with(this@DetailStoryActivity)
             .load(intent.getStringExtra(EXTRA_IMAGE))
+            .placeholder(R.drawable.loading)
             .into(binding.detailFoto)
         tvNama.text = intent.getStringExtra(EXTRA_NAME)
-        tvDeskripsi.text = intent.getStringExtra(EXTRA_DESC)
-        tvTime.text = intent.getStringExtra(EXTRA_TIME)
+        tvDeskripsi.text = Html.fromHtml(
+            generateDesc(
+                intent.getStringExtra(EXTRA_NAME).toString(),
+                intent.getStringExtra(EXTRA_DESC).toString()
+            )
+        )
+        tvTime.text = "Posted on " + intent.getStringExtra(EXTRA_TIME)
+    }
+
+    private fun generateDesc(name: String, desc: String): String {
+        val builder = StringBuilder()
+        builder.append("<b>$name</b>")
+            .append(" ")
+            .append(desc)
+
+        return builder.toString()
     }
 
     companion object {
