@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".DetailStoryActivity">
+    tools:context=".view.DetailStoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,8 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_account_circle_24" />
+                android:src="@drawable/ic_baseline_account_circle_24"
+                android:contentDescription="Account" />
 
             <TextView
                 android:id="@+id/detail_nama"

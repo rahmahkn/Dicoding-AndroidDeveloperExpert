@@ -1,7 +1,7 @@
-package com.example.favorite.ui.favorites.helper
+package com.example.favorite.helper
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.favorite.model.FavoritedStory
+import com.example.favorite.model.data.FavoritedStory
 
 class FavoritedDiffCallback(
     private val mOldFavoritedList: List<FavoritedStory>,

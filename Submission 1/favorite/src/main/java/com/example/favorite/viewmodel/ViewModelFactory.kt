@@ -1,4 +1,4 @@
-package com.example.favorite.ui.favorites.helper
+package com.example.favorite.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
@@ -25,8 +25,8 @@ class ViewModelFactory private constructor(private val mApplication: Application
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             return MainViewModel(mApplication) as T
-        } else if (modelClass.isAssignableFrom(FavoritedAddDeleteViewModel::class.java)) {
-            return FavoritedAddDeleteViewModel(mApplication) as T
+        } else if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            return MainViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

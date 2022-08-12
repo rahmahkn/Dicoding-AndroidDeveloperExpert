@@ -1,15 +1,16 @@
-package com.example.favorite
+package com.example.favorite.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.favorite.R
+import com.example.favorite.adapter.FavoritedAdapter
 import com.example.favorite.databinding.ActivityFavoriteStoryBinding
-import com.example.favorite.model.FavoritedStory
-import com.example.favorite.ui.favorites.helper.FavoritedAdapter
-import com.example.favorite.ui.favorites.helper.MainViewModel
-import com.example.favorite.ui.favorites.helper.ViewModelFactory
+import com.example.favorite.model.data.FavoritedStory
+import com.example.favorite.viewmodel.MainViewModel
+import com.example.favorite.viewmodel.ViewModelFactory
 
 class FavoriteStoryActivity : AppCompatActivity() {
     private lateinit var rvUsers: RecyclerView

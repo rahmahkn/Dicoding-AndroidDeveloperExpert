@@ -12,10 +12,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.BuildConfig
-import com.example.myapplication.R
 import com.example.core.helper.SessionPreference
 import com.example.core.helper.TokenPreference
+import com.example.myapplication.BuildConfig
+import com.example.myapplication.R
 import com.example.myapplication.model.domain.GetStoryResponse
 import com.example.myapplication.model.domain.LoginResponse
 import com.example.myapplication.network.ApiConfig
@@ -56,7 +56,7 @@ class StoryActivity : AppCompatActivity() {
                 val intent = Intent()
                 intent.setClassName(
                     BuildConfig.APPLICATION_ID,
-                    "com.example.favorite.FavoriteStoryActivity"
+                    "com.example.favorite.view.FavoriteStoryActivity"
                 )
                 startActivity(intent)
             }

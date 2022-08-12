@@ -1,4 +1,4 @@
-package com.example.favorite
+package com.example.favorite.view
 
 import android.os.Bundle
 import android.text.Html
@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.favorite.databinding.ActivityDetailStoryBinding
-import com.example.favorite.model.FavoritedStory
-import com.example.favorite.ui.favorites.helper.FavoritedAddDeleteViewModel
-import com.example.favorite.ui.favorites.helper.ViewModelFactory
+import com.example.favorite.model.data.FavoritedStory
+import com.example.favorite.viewmodel.MainViewModel
+import com.example.favorite.viewmodel.ViewModelFactory
 import com.example.myapplication.R
 
 class DetailStoryActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class DetailStoryActivity : AppCompatActivity() {
     private lateinit var tvNama: TextView
     private lateinit var tvDeskripsi: TextView
     private lateinit var tvTime: TextView
-    private lateinit var favoritedAddDeleteViewModel: FavoritedAddDeleteViewModel
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var favStory: FavoritedStory
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class DetailStoryActivity : AppCompatActivity() {
         binding = ActivityDetailStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        favoritedAddDeleteViewModel = obtainViewModel(this@DetailStoryActivity)
+        mainViewModel = obtainViewModel(this@DetailStoryActivity)
 
         ivFoto = binding.detailFoto
         tvNama = binding.detailNama
@@ -55,7 +55,7 @@ class DetailStoryActivity : AppCompatActivity() {
         )
         tvTime.text = "Posted on $dataTime"
 
-        var isFavorited = favoritedAddDeleteViewModel.isStoryExist(dataId)
+        var isFavorited = mainViewModel.isStoryExist(dataId)
         val fabFav = binding.detailFavorite
 
         if (isFavorited) fabFav.setImageResource(R.drawable.ic_baseline_favorite_24)
@@ -65,12 +65,12 @@ class DetailStoryActivity : AppCompatActivity() {
             Log.d("Test", dataImage)
 
             isFavorited = if (!isFavorited) {
-                favoritedAddDeleteViewModel.insert(favStory)
+                mainViewModel.insert(favStory)
                 fabFav.setImageResource(R.drawable.ic_baseline_favorite_24)
                 showToast("Adding $dataId to favorites")
                 true
             } else {
-                favoritedAddDeleteViewModel.delete(favStory)
+                mainViewModel.delete(favStory)
                 fabFav.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 showToast("Removing $dataId from favorites")
                 false
@@ -87,9 +87,9 @@ class DetailStoryActivity : AppCompatActivity() {
         return builder.toString()
     }
 
-    private fun obtainViewModel(activity: AppCompatActivity): FavoritedAddDeleteViewModel {
+    private fun obtainViewModel(activity: AppCompatActivity): MainViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory)[FavoritedAddDeleteViewModel::class.java]
+        return ViewModelProvider(activity, factory)[MainViewModel::class.java]
     }
 
     private fun showToast(message: String) {
