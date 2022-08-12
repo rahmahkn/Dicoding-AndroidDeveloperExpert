@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.StoryActivity">
+    tools:context=".DetailStoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,6 +18,7 @@
             android:paddingHorizontal="15dp">
 
             <ImageView
+                android:id="@id/iv_favorite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_baseline_account_circle_24" />

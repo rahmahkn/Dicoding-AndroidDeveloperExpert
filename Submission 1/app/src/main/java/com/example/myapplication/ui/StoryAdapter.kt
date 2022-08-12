@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
 import com.example.myapplication.model.domain.ListStoryItem
 import java.text.SimpleDateFormat
@@ -37,12 +38,14 @@ class StoryAdapter(private val listStories: List<ListStoryItem>) :
         viewHolder.tvTime.text = formattedDate
 
         viewHolder.itemView.setOnClickListener {
-            val intent = Intent(it.context, DetailStoryActivity::class.java)
-            intent.putExtra(DetailStoryActivity.EXTRA_ID, listStories[position].id)
-            intent.putExtra(DetailStoryActivity.EXTRA_IMAGE, listStories[position].photoUrl)
-            intent.putExtra(DetailStoryActivity.EXTRA_NAME, listStories[position].name)
-            intent.putExtra(DetailStoryActivity.EXTRA_DESC, listStories[position].description)
-            intent.putExtra(DetailStoryActivity.EXTRA_TIME, formattedDate)
+            val intent = Intent()
+            intent.setClassName(BuildConfig.APPLICATION_ID,"com.example.favorite.DetailStoryActivity")
+//            val intent = Intent(it.context, com.example.)
+            intent.putExtra("mId", listStories[position].id)
+            intent.putExtra("mPhotoUrl", listStories[position].photoUrl)
+            intent.putExtra("mName", listStories[position].name)
+            intent.putExtra("mDescription", listStories[position].description)
+            intent.putExtra("mDate", formattedDate)
 
             val optionsCompat: ActivityOptionsCompat =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(

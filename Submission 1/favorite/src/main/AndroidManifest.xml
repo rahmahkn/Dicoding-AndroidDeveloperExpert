@@ -17,6 +17,9 @@
         <activity
             android:name=".FavoriteStoryActivity"
             android:exported="false" />
+        <activity
+            android:name=".DetailStoryActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
