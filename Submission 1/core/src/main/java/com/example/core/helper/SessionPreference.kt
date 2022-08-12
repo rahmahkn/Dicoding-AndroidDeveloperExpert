@@ -1,4 +1,4 @@
-package com.example.myapplication.helper
+package com.example.core.helper
 
 import android.content.Context
 
