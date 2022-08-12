@@ -2,7 +2,6 @@ package com.example.favorite.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import androidx.room.Dao
 import com.example.favorite.model.FavoritedStory
 
 @Dao

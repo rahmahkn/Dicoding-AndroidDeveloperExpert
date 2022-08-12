@@ -1,7 +1,7 @@
 package com.example.favorite
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +10,6 @@ import com.example.favorite.model.FavoritedStory
 import com.example.favorite.ui.favorites.helper.FavoritedAdapter
 import com.example.favorite.ui.favorites.helper.MainViewModel
 import com.example.favorite.ui.favorites.helper.ViewModelFactory
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class FavoriteStoryActivity : AppCompatActivity() {
     private lateinit var rvUsers: RecyclerView

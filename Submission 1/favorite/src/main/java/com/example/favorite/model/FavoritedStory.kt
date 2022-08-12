@@ -25,4 +25,4 @@ data class FavoritedStory(
     @ColumnInfo(name = "description")
     val description: String,
 
-) : Parcelable
+    ) : Parcelable

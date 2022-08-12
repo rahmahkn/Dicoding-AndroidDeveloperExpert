@@ -2,6 +2,7 @@ package com.example.favorite
 
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -55,12 +56,13 @@ class DetailStoryActivity : AppCompatActivity() {
         tvTime.text = "Posted on $dataTime"
 
         var isFavorited = favoritedAddDeleteViewModel.isStoryExist(dataId)
-        val fabFav = binding.ivFavorite
+        val fabFav = binding.detailFavorite
 
         if (isFavorited) fabFav.setImageResource(R.drawable.ic_baseline_favorite_24)
 
-        binding.ivFavorite.setOnClickListener {
+        binding.detailFavorite.setOnClickListener {
             favStory = FavoritedStory(dataId, dataImage, dataTime, dataName, dataDesc)
+            Log.d("Test", dataImage)
 
             isFavorited = if (!isFavorited) {
                 favoritedAddDeleteViewModel.insert(favStory)

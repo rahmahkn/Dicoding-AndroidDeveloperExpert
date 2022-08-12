@@ -39,8 +39,10 @@ class StoryAdapter(private val listStories: List<ListStoryItem>) :
 
         viewHolder.itemView.setOnClickListener {
             val intent = Intent()
-            intent.setClassName(BuildConfig.APPLICATION_ID,"com.example.favorite.DetailStoryActivity")
-//            val intent = Intent(it.context, com.example.)
+            intent.setClassName(
+                BuildConfig.APPLICATION_ID,
+                "com.example.favorite.DetailStoryActivity"
+            )
             intent.putExtra("mId", listStories[position].id)
             intent.putExtra("mPhotoUrl", listStories[position].photoUrl)
             intent.putExtra("mName", listStories[position].name)

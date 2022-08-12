@@ -54,7 +54,10 @@ class StoryActivity : AppCompatActivity() {
             R.id.menu_favorite -> {
 
                 val intent = Intent()
-                intent.setClassName(BuildConfig.APPLICATION_ID,"com.example.favorite.FavoriteStoryActivity")
+                intent.setClassName(
+                    BuildConfig.APPLICATION_ID,
+                    "com.example.favorite.FavoriteStoryActivity"
+                )
                 startActivity(intent)
             }
         }
