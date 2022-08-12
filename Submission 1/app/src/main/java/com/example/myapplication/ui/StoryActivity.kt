@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
 import com.example.myapplication.helper.SessionPreference
 import com.example.myapplication.helper.TokenPreference
@@ -51,7 +52,10 @@ class StoryActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_favorite -> {
-                startActivity(Intent(this, FavoriteStoryActivity::class.java))
+
+                val intent = Intent()
+                intent.setClassName(BuildConfig.APPLICATION_ID,"com.example.favorite.FavoriteStoryActivity")
+                startActivity(intent)
             }
         }
         return true

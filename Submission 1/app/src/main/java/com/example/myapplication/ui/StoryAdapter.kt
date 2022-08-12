@@ -38,6 +38,7 @@ class StoryAdapter(private val listStories: List<ListStoryItem>) :
 
         viewHolder.itemView.setOnClickListener {
             val intent = Intent(it.context, DetailStoryActivity::class.java)
+            intent.putExtra(DetailStoryActivity.EXTRA_ID, listStories[position].id)
             intent.putExtra(DetailStoryActivity.EXTRA_IMAGE, listStories[position].photoUrl)
             intent.putExtra(DetailStoryActivity.EXTRA_NAME, listStories[position].name)
             intent.putExtra(DetailStoryActivity.EXTRA_DESC, listStories[position].description)

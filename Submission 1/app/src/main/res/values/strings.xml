@@ -6,4 +6,5 @@
     <string name="name">Name</string>
     <string name="detail_foto">Detail Foto</string>
     <string name="favorite">favorite</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
