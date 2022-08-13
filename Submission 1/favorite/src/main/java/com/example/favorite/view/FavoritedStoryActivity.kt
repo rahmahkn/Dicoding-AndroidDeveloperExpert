@@ -9,10 +9,10 @@ import com.example.favorite.R
 import com.example.favorite.adapter.FavoritedAdapter
 import com.example.favorite.databinding.ActivityFavoriteStoryBinding
 import com.example.favorite.model.data.FavoritedStory
-import com.example.favorite.viewmodel.MainViewModel
+import com.example.favorite.viewmodel.FavoritedViewModel
 import com.example.favorite.viewmodel.ViewModelFactory
 
-class FavoriteStoryActivity : AppCompatActivity() {
+class FavoritedStoryActivity : AppCompatActivity() {
     private lateinit var rvUsers: RecyclerView
     private var _activityFavoriteBinding: ActivityFavoriteStoryBinding? = null
     private val binding get() = _activityFavoriteBinding
@@ -27,7 +27,7 @@ class FavoriteStoryActivity : AppCompatActivity() {
         rvUsers = findViewById(R.id.rv_stories)
 
         // setting up view model
-        val mainViewModel = obtainViewModel(this@FavoriteStoryActivity)
+        val mainViewModel = obtainViewModel(this@FavoritedStoryActivity)
         mainViewModel.getAllFavorites().observe(this) { userList ->
             if (userList != null) {
                 // setting up adapter
@@ -50,8 +50,8 @@ class FavoriteStoryActivity : AppCompatActivity() {
         _activityFavoriteBinding = null
     }
 
-    private fun obtainViewModel(activity: AppCompatActivity): MainViewModel {
+    private fun obtainViewModel(activity: AppCompatActivity): FavoritedViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory)[MainViewModel::class.java]
+        return ViewModelProvider(activity, factory)[FavoritedViewModel::class.java]
     }
 }

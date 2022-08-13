@@ -23,10 +23,10 @@ class ViewModelFactory private constructor(private val mApplication: Application
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(mApplication) as T
-        } else if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(mApplication) as T
+        if (modelClass.isAssignableFrom(FavoritedViewModel::class.java)) {
+            return FavoritedViewModel(mApplication) as T
+        } else if (modelClass.isAssignableFrom(FavoritedViewModel::class.java)) {
+            return FavoritedViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

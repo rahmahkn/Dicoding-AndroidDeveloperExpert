@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.favorite.model.data.FavoritedStory
 import com.example.favorite.repository.FavoritedRepository
 
-class MainViewModel(application: Application) : ViewModel() {
+class FavoritedViewModel(application: Application) : ViewModel() {
     private val mFavoritedRepository: FavoritedRepository = FavoritedRepository(application)
 
     fun getAllFavorites(): LiveData<List<FavoritedStory>> = mFavoritedRepository.getAllFavorites()
