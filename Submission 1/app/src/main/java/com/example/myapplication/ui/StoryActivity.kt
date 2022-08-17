@@ -14,12 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.helper.SessionPreference
-import com.example.core.helper.TokenPreference
+import com.example.core.data.SessionPreference
+import com.example.core.data.TokenPreference
+import com.example.core.data.source.remote.NetworkResult
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
-import com.example.myapplication.model.enums.NetworkResult
-import com.example.myapplication.viewmodel.StoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -62,7 +61,7 @@ class StoryActivity : AppCompatActivity() {
                 val intent = Intent()
                 intent.setClassName(
                     BuildConfig.APPLICATION_ID,
-                    "com.example.favorite.view.FavoritedStoryActivity"
+                    "com.example.favorite.ui.FavoritedStoryActivity"
                 )
                 startActivity(intent)
             }

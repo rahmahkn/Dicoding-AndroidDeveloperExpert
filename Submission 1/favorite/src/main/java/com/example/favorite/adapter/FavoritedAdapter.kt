@@ -8,11 +8,11 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.core.data.source.local.entity.FavoritedStory
+import com.example.core.data.source.local.repository.FavoritedDiffCallback
 import com.example.favorite.R
 import com.example.favorite.databinding.ItemFavoriteStoryBinding
-import com.example.favorite.helper.FavoritedDiffCallback
-import com.example.favorite.model.data.FavoritedStory
-import com.example.favorite.view.DetailStoryActivity
+import com.example.favorite.ui.DetailStoryActivity
 
 class FavoritedAdapter(private val listFavorited: List<FavoritedStory>) :
     RecyclerView.Adapter<FavoritedAdapter.FavoritedViewHolder>() {

@@ -3,8 +3,8 @@ package com.example.favorite.viewmodel
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.favorite.model.data.FavoritedStory
-import com.example.favorite.repository.FavoritedRepository
+import com.example.core.data.source.local.entity.FavoritedStory
+import com.example.core.data.source.local.repository.FavoritedRepository
 
 class FavoritedViewModel(application: Application) : ViewModel() {
     private val mFavoritedRepository: FavoritedRepository = FavoritedRepository(application)

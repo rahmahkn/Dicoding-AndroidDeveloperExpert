@@ -41,7 +41,7 @@ class StoryAdapter(private val listStories: List<ListStoryItem>) :
             val intent = Intent()
             intent.setClassName(
                 BuildConfig.APPLICATION_ID,
-                "com.example.favorite.view.DetailStoryActivity"
+                "com.example.favorite.ui.DetailStoryActivity"
             )
             intent.putExtra("mId", listStories[position].id)
             intent.putExtra("mPhotoUrl", listStories[position].photoUrl)

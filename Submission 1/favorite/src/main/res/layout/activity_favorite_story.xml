@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E1E3E5"
-    tools:context=".view.FavoritedStoryActivity">
+    tools:context=".ui.FavoritedStoryActivity">
 
     <ProgressBar
         android:id="@+id/progress_bar"

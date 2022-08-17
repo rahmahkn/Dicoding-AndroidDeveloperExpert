@@ -15,10 +15,10 @@
 
     <application android:icon="@mipmap/ic_launcher">
         <activity
-            android:name=".view.FavoritedStoryActivity"
+            android:name=".ui.FavoritedStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DetailStoryActivity"
+            android:name=".ui.DetailStoryActivity"
             android:exported="false" />
     </application>
 
