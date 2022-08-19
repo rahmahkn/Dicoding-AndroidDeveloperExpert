@@ -19,11 +19,11 @@ import com.example.core.data.source.remote.NetworkResult
 import com.example.core.ui.StoryViewModel
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
+import com.example.myapplication.adapter.StoryAdapter
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-//@AndroidEntryPoint
 class StoryActivity : AppCompatActivity() {
     private lateinit var rvStories: RecyclerView
     private lateinit var mTokenPreference: TokenPreference

@@ -7,21 +7,13 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.tourismapp.core.domain.model.Story
+import com.example.core.domain.model.Story
 import com.example.favorite.R
 import com.example.favorite.databinding.ItemFavoriteStoryBinding
 import com.example.favorite.ui.DetailStoryActivity
 
 class FavoritedAdapter(private val listFavorited: List<Story>) :
     RecyclerView.Adapter<FavoritedAdapter.FavoritedViewHolder>() {
-//    fun setListNotes(listFavoritedFinal: ArrayList<FavoritedStory>) {
-//        val diffCallback = FavoritedDiffCallback(listFavorited, listFavoritedFinal)
-//        val diffResult = DiffUtil.calculateDiff(diffCallback)
-//
-//        listFavoritedFinal.clear()
-//        listFavoritedFinal.addAll(listFavorited)
-//        diffResult.dispatchUpdatesTo(this)
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritedViewHolder {
         val binding =

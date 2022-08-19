@@ -1,4 +1,4 @@
-package com.example.myapplication.helper
+package com.example.core.data.source.remote
 
 import org.json.JSONObject
 import retrofit2.Response

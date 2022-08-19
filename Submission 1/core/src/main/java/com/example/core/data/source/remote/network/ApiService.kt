@@ -1,7 +1,5 @@
 package com.example.core.data.source.remote.network
 
-import com.example.myapplication.model.domain.GetStoryResponse
-import com.example.myapplication.model.domain.LoginResponse
 import retrofit2.Response
 import retrofit2.http.*
 

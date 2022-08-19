@@ -1,6 +1,5 @@
 package com.example.favorite.ui
 
-//import com.example.favorite.viewmodel.ViewModelFactory
 import android.os.Bundle
 import android.text.Html
 import android.widget.ImageView
@@ -9,9 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.dicoding.tourismapp.core.utils.DataMapper
 import com.example.core.data.source.local.entity.FavoritedStory
 import com.example.core.ui.FavoritedViewModel
+import com.example.core.utils.DataMapper
 import com.example.favorite.R
 import com.example.favorite.databinding.ActivityDetailStoryBinding
 import kotlinx.coroutines.Job
@@ -25,10 +24,8 @@ class DetailStoryActivity : AppCompatActivity() {
     private lateinit var tvDeskripsi: TextView
     private lateinit var tvTime: TextView
 
-    //    private lateinit var favoritedViewModel: FavoritedViewModel
     private val favoritedViewModel: FavoritedViewModel by viewModel()
     private var job: Job = Job()
-//    private var isFavorited: Boolean = false
 
     private lateinit var favStory: FavoritedStory
 
@@ -37,36 +34,15 @@ class DetailStoryActivity : AppCompatActivity() {
         binding = ActivityDetailStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        favoritedViewModel = obtainViewModel(this@DetailStoryActivity)
-
         ivFoto = binding.detailFoto
         tvNama = binding.detailNama
         tvDeskripsi = binding.detailDeskripsi
         tvTime = binding.detailWaktu
 
-        isFavorited()
-
+        setFavorite()
     }
 
-    private fun generateDesc(name: String, desc: String): String {
-        val builder = StringBuilder()
-        builder.append("<b>$name</b>")
-            .append(" ")
-            .append(desc)
-
-        return builder.toString()
-    }
-
-//    private fun obtainViewModel(activity: AppCompatActivity): FavoritedViewModel {
-//        val factory = ViewModelFactory.getInstance(activity.application)
-//        return ViewModelProvider(activity, factory)[FavoritedViewModel::class.java]
-//    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun isFavorited() {
+    private fun setFavorite() {
 
         val dataId = intent.getStringExtra("mId")!!
         val dataImage = intent.getStringExtra("mPhotoUrl")!!
@@ -92,7 +68,6 @@ class DetailStoryActivity : AppCompatActivity() {
                 )
                 tvTime.text = "Posted on $dataTime"
 
-//        var isFavorited = favoritedViewModel.isStoryExist(dataId)
                 val fabFav = binding.detailFavorite
 
                 if (isFavorited) fabFav.setImageResource(R.drawable.ic_baseline_favorite_24)
@@ -114,5 +89,18 @@ class DetailStoryActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun generateDesc(name: String, desc: String): String {
+        val builder = StringBuilder()
+        builder.append("<b>$name</b>")
+            .append(" ")
+            .append(desc)
+
+        return builder.toString()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui
+package com.example.myapplication.adapter
 
 import android.app.Activity
 import android.content.Intent
@@ -10,9 +10,9 @@ import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.core.data.source.remote.network.ListStoryItem
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
-import com.example.myapplication.model.domain.ListStoryItem
 import java.text.SimpleDateFormat
 
 class StoryAdapter(private val listStories: List<ListStoryItem>) :
@@ -34,7 +34,7 @@ class StoryAdapter(private val listStories: List<ListStoryItem>) :
 
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
         val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
-        val formattedDate = formatter.format(parser.parse(listStories[position].createdAt))
+        val formattedDate = formatter.format(parser.parse(listStories[position].createdAt)!!)
         viewHolder.tvTime.text = formattedDate
 
         viewHolder.itemView.setOnClickListener {

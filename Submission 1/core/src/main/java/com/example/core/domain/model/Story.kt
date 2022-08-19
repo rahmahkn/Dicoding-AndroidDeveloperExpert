@@ -1,7 +1,7 @@
-package com.dicoding.tourismapp.core.domain.model
+package com.example.core.domain.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Story(
@@ -10,6 +10,6 @@ data class Story(
     val photoUrl: String,
     val createdAt: String,
     val name: String,
-    val description: String,
+    val description: String
 
-    ) : Parcelable
+) : Parcelable

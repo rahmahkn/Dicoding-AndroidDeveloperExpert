@@ -1,9 +1,9 @@
-package com.dicoding.tourismapp.core.domain.usecase
+package com.example.core.domain.usecase
 
-import com.dicoding.tourismapp.core.domain.model.Story
-import com.dicoding.tourismapp.core.domain.repository.IStoryRepository
 import com.example.core.data.source.remote.NetworkResult
-import com.example.myapplication.model.domain.GetStoryResponse
+import com.example.core.data.source.remote.network.GetStoryResponse
+import com.example.core.domain.model.Story
+import com.example.core.domain.repository.IStoryRepository
 import kotlinx.coroutines.flow.Flow
 
 class StoryInteractor(private val storyRepository: IStoryRepository) : StoryUseCase {

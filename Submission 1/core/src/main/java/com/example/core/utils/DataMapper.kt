@@ -1,25 +1,9 @@
-package com.dicoding.tourismapp.core.utils
+package com.example.core.utils
 
-import com.dicoding.tourismapp.core.domain.model.Story
 import com.example.core.data.source.local.entity.FavoritedStory
-import com.example.myapplication.model.domain.GetStoryResponse
+import com.example.core.domain.model.Story
 
 object DataMapper {
-    fun mapResponsesToDomain(input: GetStoryResponse): List<Story> {
-        val storyList = ArrayList<Story>()
-        input.listStory.map {
-            val story = Story(
-                id = it.id,
-                name = it.name,
-                description = it.description,
-                createdAt = it.createdAt,
-                photoUrl = it.photoUrl
-            )
-            storyList.add(story)
-        }
-        return storyList
-    }
-
     fun mapEntitiesToDomain(input: List<FavoritedStory>): List<Story> =
         input.map {
             Story(

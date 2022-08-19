@@ -1,27 +1,14 @@
 package com.example.core.data.source.remote
 
-import android.util.Log
 import com.example.core.data.source.remote.network.ApiService
-import com.example.myapplication.helper.getErrorMessageFromApi
-import com.example.myapplication.model.domain.GetStoryResponse
-import com.example.myapplication.model.domain.LoginResponse
+import com.example.core.data.source.remote.network.GetStoryResponse
+import com.example.core.data.source.remote.network.LoginResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 
 class RemoteDataSource(private val apiService: ApiService) {
-
-//    hapus kode berikut
-//    companion object {
-//        @Volatile
-//        private var instance: RemoteDataSource? = null
-//
-//        fun getInstance(service: ApiService): RemoteDataSource =
-//            instance ?: synchronized(this) {
-//                instance ?: RemoteDataSource(service)
-//            }
-//    }
 
     suspend fun postLogin(
         email: String,
@@ -35,8 +22,6 @@ class RemoteDataSource(private val apiService: ApiService) {
                 apiService.postLogin(
                     email, password
                 )
-
-            Log.d("TEST LOGIN", response.body()!!.toString())
 
             when (response.code()) {
                 200 -> emit(NetworkResult.Success(response.body()!!))

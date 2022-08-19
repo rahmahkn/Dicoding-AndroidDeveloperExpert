@@ -1,7 +1,7 @@
 package com.example.myapplication.di
 
-import com.dicoding.tourismapp.core.domain.usecase.StoryInteractor
-import com.dicoding.tourismapp.core.domain.usecase.StoryUseCase
+import com.example.core.domain.usecase.StoryInteractor
+import com.example.core.domain.usecase.StoryUseCase
 import com.example.core.ui.FavoritedViewModel
 import com.example.core.ui.StoryViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

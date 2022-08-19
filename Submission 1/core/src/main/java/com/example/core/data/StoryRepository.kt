@@ -1,14 +1,14 @@
-package com.dicoding.tourismapp.core.data
+package com.example.core.data
 
-import com.dicoding.tourismapp.core.domain.model.Story
-import com.dicoding.tourismapp.core.domain.repository.IStoryRepository
-import com.dicoding.tourismapp.core.utils.AppExecutors
-import com.dicoding.tourismapp.core.utils.DataMapper
 import com.example.core.data.source.local.LocalDataSource
 import com.example.core.data.source.remote.NetworkResult
 import com.example.core.data.source.remote.RemoteDataSource
-import com.example.myapplication.model.domain.GetStoryResponse
-import com.example.myapplication.model.domain.LoginResponse
+import com.example.core.data.source.remote.network.GetStoryResponse
+import com.example.core.data.source.remote.network.LoginResponse
+import com.example.core.domain.model.Story
+import com.example.core.domain.repository.IStoryRepository
+import com.example.core.utils.AppExecutors
+import com.example.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

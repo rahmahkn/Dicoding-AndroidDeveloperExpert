@@ -1,6 +1,5 @@
 package com.example.favorite.ui
 
-//import com.example.favorite.viewmodel.ViewModelFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -30,8 +29,6 @@ class FavoritedStoryActivity : AppCompatActivity() {
 
         rvUsers = findViewById(R.id.rv_stories)
 
-        // setting up view model
-//        val mainViewModel = obtainViewModel(this@FavoritedStoryActivity)
         getFavorites()
     }
 
@@ -48,13 +45,8 @@ class FavoritedStoryActivity : AppCompatActivity() {
 
             storyJob = launch {
                 mainViewModel.getAllFavorites().collect { userList ->
-                    // setting up adapter
-//                        val listFavorited = ArrayList<FavoritedStory>()
-//                        listFavorited.clear()
-//                        listFavorited.addAll(userList)
-                    adapter = FavoritedAdapter(userList)
-//                        adapter.setListNotes(listFavorited)
 
+                    adapter = FavoritedAdapter(userList)
 
                     binding?.rvStories?.layoutManager = layoutManager
                     binding?.rvStories?.setHasFixedSize(true)
@@ -63,9 +55,4 @@ class FavoritedStoryActivity : AppCompatActivity() {
             }
         }
     }
-
-//    private fun obtainViewModel(activity: AppCompatActivity): FavoritedViewModel {
-//        val factory = ViewModelFactory.getInstance(activity.application)
-//        return ViewModelProvider(activity, factory)[FavoritedViewModel::class.java]
-//    }
 }
