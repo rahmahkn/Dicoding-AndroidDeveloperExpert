@@ -13,5 +13,5 @@ class FavoritedViewModel(val storyUseCase: StoryUseCase) : ViewModel() {
 
     fun delete(user: Story) = storyUseCase.delete(user)
 
-    fun isStoryExist(id: String): Boolean = storyUseCase.isStoryExist(id)
+    fun isStoryExist(id: String): Flow<Boolean> = storyUseCase.isStoryExist(id)
 }

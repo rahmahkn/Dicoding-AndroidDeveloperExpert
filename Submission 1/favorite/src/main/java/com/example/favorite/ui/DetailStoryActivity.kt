@@ -7,12 +7,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.dicoding.tourismapp.core.utils.DataMapper
 import com.example.core.data.source.local.entity.FavoritedStory
 import com.example.core.ui.FavoritedViewModel
 import com.example.favorite.R
 import com.example.favorite.databinding.ActivityDetailStoryBinding
+import kotlinx.coroutines.CompletableJob
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailStoryActivity : AppCompatActivity() {
@@ -24,6 +28,8 @@ class DetailStoryActivity : AppCompatActivity() {
 
     //    private lateinit var favoritedViewModel: FavoritedViewModel
     private val favoritedViewModel: FavoritedViewModel by viewModel()
+    private var job: Job = Job()
+    private var isFavorited: Boolean = false
 
     private lateinit var favStory: FavoritedStory
 
@@ -45,6 +51,8 @@ class DetailStoryActivity : AppCompatActivity() {
         val dataDesc = intent.getStringExtra("mDescription")!!
         val dataTime = intent.getStringExtra("mDate")!!
 
+        isFavorited(dataId)
+
         Glide.with(this@DetailStoryActivity)
             .load(dataImage)
             .placeholder(R.drawable.loading)
@@ -58,7 +66,7 @@ class DetailStoryActivity : AppCompatActivity() {
         )
         tvTime.text = "Posted on $dataTime"
 
-        var isFavorited = favoritedViewModel.isStoryExist(dataId)
+//        var isFavorited = favoritedViewModel.isStoryExist(dataId)
         val fabFav = binding.detailFavorite
 
         if (isFavorited) fabFav.setImageResource(R.drawable.ic_baseline_favorite_24)
@@ -96,5 +104,16 @@ class DetailStoryActivity : AppCompatActivity() {
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun isFavorited(id: String) {
+        lifecycleScope.launchWhenResumed {
+            if (job.isActive) job.cancel()
+            job = launch {
+                favoritedViewModel.isStoryExist(id).collect {
+                    isFavorited = it
+                }
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@ class RemoteDataSource(private val apiService: ApiService) {
 //            }
 //    }
 
-    fun postLogin(
+    suspend fun postLogin(
         email: String,
         password: String
     ) = flow {
@@ -50,7 +50,7 @@ class RemoteDataSource(private val apiService: ApiService) {
         }
     }.flowOn(Dispatchers.IO)
 
-    fun getStories(authHeader: String) = flow {
+    suspend fun getStories(authHeader: String) = flow {
 
         emit(NetworkResult.Loading)
 

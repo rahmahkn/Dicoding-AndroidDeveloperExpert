@@ -8,13 +8,13 @@ import retrofit2.http.*
 interface ApiService {
     @FormUrlEncoded
     @POST("login")
-    fun postLogin(
+    suspend fun postLogin(
         @Field("email") email: String,
         @Field("password") password: String
     ): Response<LoginResponse>
 
     @GET("stories")
-    fun getStories(
+    suspend fun getStories(
         @Header("Authorization") authHeader: String,
     ): Response<GetStoryResponse>
 }

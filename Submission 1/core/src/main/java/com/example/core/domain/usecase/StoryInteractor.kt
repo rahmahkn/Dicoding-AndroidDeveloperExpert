@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.Flow
 
 class StoryInteractor(private val storyRepository: IStoryRepository) : StoryUseCase {
 
-    override fun getStories(authHeader: String): Flow<NetworkResult<GetStoryResponse>> =
+    override suspend fun getStories(authHeader: String): Flow<NetworkResult<GetStoryResponse>> =
         storyRepository.getStories(authHeader)
 
-    override fun postLogin(email: String, password: String) =
+    override suspend fun postLogin(email: String, password: String) =
         storyRepository.postLogin(email, password)
 
     override fun getAllFavorites() = storyRepository.getAllFavorites()

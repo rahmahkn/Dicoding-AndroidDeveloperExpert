@@ -31,7 +31,7 @@ package com.example.core.data.source.remote.repository
 //        }
 //    }.flowOn(Dispatchers.IO)
 //
-//    override fun getStories(authHeader: String) = flow {
+//    override suspend fun getStories(authHeader: String) = flow {
 //
 //        emit(NetworkResult.Loading)
 //

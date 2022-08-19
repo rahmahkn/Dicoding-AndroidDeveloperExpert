@@ -9,7 +9,7 @@ package com.example.core.data.source.remote.repository
 //        password: String
 //    ): Flow<Resource<LoginResponse>>
 //
-//    abstract fun getStories(
+//    abstract suspend fun getStories(
 //        authHeader: String
 //    ): Flow<Resource<GetStoryResponse>>
 //

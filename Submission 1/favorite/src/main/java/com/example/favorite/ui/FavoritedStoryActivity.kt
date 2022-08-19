@@ -32,7 +32,7 @@ class FavoritedStoryActivity : AppCompatActivity() {
 
         // setting up view model
 //        val mainViewModel = obtainViewModel(this@FavoritedStoryActivity)
-
+        getFavorites()
     }
 
     override fun onDestroy() {
@@ -48,19 +48,17 @@ class FavoritedStoryActivity : AppCompatActivity() {
 
             storyJob = launch {
                 mainViewModel.getAllFavorites().collect { userList ->
-                    if (userList != null) {
-                        // setting up adapter
+                    // setting up adapter
 //                        val listFavorited = ArrayList<FavoritedStory>()
 //                        listFavorited.clear()
 //                        listFavorited.addAll(userList)
-                        adapter = FavoritedAdapter(userList)
+                    adapter = FavoritedAdapter(userList)
 //                        adapter.setListNotes(listFavorited)
 
 
-                        binding?.rvStories?.layoutManager = layoutManager
-                        binding?.rvStories?.setHasFixedSize(true)
-                        binding?.rvStories?.adapter = adapter
-                    }
+                    binding?.rvStories?.layoutManager = layoutManager
+                    binding?.rvStories?.setHasFixedSize(true)
+                    binding?.rvStories?.adapter = adapter
                 }
             }
         }

@@ -10,6 +10,7 @@ import com.example.core.data.source.remote.RemoteDataSource
 import com.example.myapplication.model.domain.GetStoryResponse
 import com.example.myapplication.model.domain.LoginResponse
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 class StoryRepository(
@@ -17,7 +18,7 @@ class StoryRepository(
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) : IStoryRepository {
-    override fun getStories(authHeader: String): Flow<NetworkResult<GetStoryResponse>> {
+    override suspend fun getStories(authHeader: String): Flow<NetworkResult<GetStoryResponse>> {
         return remoteDataSource.getStories(authHeader)
     }
 
@@ -58,7 +59,7 @@ class StoryRepository(
 //            }
 //        }.asFlow()
 //
-    override fun postLogin(email: String, password: String): Flow<NetworkResult<LoginResponse>> {
+    override suspend fun postLogin(email: String, password: String): Flow<NetworkResult<LoginResponse>> {
         return remoteDataSource.postLogin(email, password)
     }
 
@@ -78,8 +79,8 @@ class StoryRepository(
         appExecutors.diskIO().execute { localDataSource.delete(tourismEntity) }
     }
 
-    override fun isStoryExist(id: String): Boolean {
-        return localDataSource.isStoryExist(id)
+    override fun isStoryExist(id: String): Flow<Boolean> {
+        return flow { localDataSource.isStoryExist(id) }
     }
 }
 

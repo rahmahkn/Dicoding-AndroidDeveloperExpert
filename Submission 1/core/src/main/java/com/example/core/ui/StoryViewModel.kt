@@ -11,14 +11,14 @@ import com.dicoding.tourismapp.core.domain.usecase.StoryUseCase
 //    fun postLogin(email: String, password: String) =
 //        storyRepository.postLogin(email, password)
 //
-//    fun getStories(authHeader: String) =
+//    suspend fun getStories(authHeader: String) =
 //        storyRepository.getStories(authHeader)
 //}
 
 class StoryViewModel(val storyUseCase: StoryUseCase) : ViewModel() {
-    fun postLogin(email: String, password: String) =
+    suspend fun postLogin(email: String, password: String) =
         storyUseCase.postLogin(email, password)
 
-    fun getStories(authHeader: String) =
+    suspend fun getStories(authHeader: String) =
         storyUseCase.getStories(authHeader)
 }

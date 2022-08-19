@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface StoryUseCase {
 
-    fun getStories(authHeader: String): Flow<NetworkResult<GetStoryResponse>>
+    suspend fun getStories(authHeader: String): Flow<NetworkResult<GetStoryResponse>>
 
-    fun postLogin(email: String, password: String): Flow<NetworkResult<LoginResponse>>
+    suspend fun postLogin(email: String, password: String): Flow<NetworkResult<LoginResponse>>
 
     fun getAllFavorites(): Flow<List<Story>>
 
@@ -18,6 +18,6 @@ interface StoryUseCase {
 
     fun delete(user: Story)
 
-    fun isStoryExist(id: String): Boolean
+    fun isStoryExist(id: String): Flow<Boolean>
 
 }
