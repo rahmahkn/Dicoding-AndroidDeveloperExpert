@@ -9,6 +9,8 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
         classpath "com.google.dagger:hilt-android-gradle-plugin:2.41"
     }
+
+    ext.koin_version = "2.1.6"
 }
 
 plugins {

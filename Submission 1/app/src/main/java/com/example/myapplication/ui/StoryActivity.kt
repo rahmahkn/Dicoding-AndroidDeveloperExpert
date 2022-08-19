@@ -9,27 +9,27 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.data.SessionPreference
-import com.example.core.data.TokenPreference
+import com.example.core.data.source.preference.SessionPreference
+import com.example.core.data.source.preference.TokenPreference
 import com.example.core.data.source.remote.NetworkResult
+import com.example.core.ui.StoryViewModel
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class StoryActivity : AppCompatActivity() {
     private lateinit var rvStories: RecyclerView
     private lateinit var mTokenPreference: TokenPreference
     private lateinit var mSessionPreference: SessionPreference
 
-    private val viewModel by viewModels<StoryViewModel>()
+    private val viewModel: StoryViewModel by viewModel()
     private var loginJob: Job = Job()
     private var storyJob: Job = Job()
 

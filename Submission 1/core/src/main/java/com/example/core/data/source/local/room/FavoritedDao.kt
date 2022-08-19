@@ -1,8 +1,8 @@
 package com.example.core.data.source.local.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.core.data.source.local.entity.FavoritedStory
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoritedDao {
@@ -13,7 +13,7 @@ interface FavoritedDao {
     fun delete(user: FavoritedStory)
 
     @Query("SELECT * FROM favoritedStory")
-    fun getAllFavorites(): LiveData<List<FavoritedStory>>
+    fun getAllFavorites(): Flow<List<FavoritedStory>>
 
     @Query("SELECT EXISTS(SELECT * FROM favoritedStory WHERE id = :id)")
     fun isStoryExist(id: String): Boolean

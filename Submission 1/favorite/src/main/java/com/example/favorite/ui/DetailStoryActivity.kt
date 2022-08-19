@@ -1,18 +1,19 @@
 package com.example.favorite.ui
 
+//import com.example.favorite.viewmodel.ViewModelFactory
 import android.os.Bundle
 import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.dicoding.tourismapp.core.utils.DataMapper
 import com.example.core.data.source.local.entity.FavoritedStory
+import com.example.core.ui.FavoritedViewModel
 import com.example.favorite.R
 import com.example.favorite.databinding.ActivityDetailStoryBinding
-import com.example.favorite.viewmodel.FavoritedViewModel
-import com.example.favorite.viewmodel.ViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailStoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailStoryBinding
@@ -20,7 +21,10 @@ class DetailStoryActivity : AppCompatActivity() {
     private lateinit var tvNama: TextView
     private lateinit var tvDeskripsi: TextView
     private lateinit var tvTime: TextView
-    private lateinit var favoritedViewModel: FavoritedViewModel
+
+    //    private lateinit var favoritedViewModel: FavoritedViewModel
+    private val favoritedViewModel: FavoritedViewModel by viewModel()
+
     private lateinit var favStory: FavoritedStory
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +32,7 @@ class DetailStoryActivity : AppCompatActivity() {
         binding = ActivityDetailStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        favoritedViewModel = obtainViewModel(this@DetailStoryActivity)
+//        favoritedViewModel = obtainViewModel(this@DetailStoryActivity)
 
         ivFoto = binding.detailFoto
         tvNama = binding.detailNama
@@ -63,12 +67,12 @@ class DetailStoryActivity : AppCompatActivity() {
             favStory = FavoritedStory(dataId, dataImage, dataTime, dataName, dataDesc)
 
             isFavorited = if (!isFavorited) {
-                favoritedViewModel.insert(favStory)
+                favoritedViewModel.insert(DataMapper.mapEntityToDomain(favStory))
                 fabFav.setImageResource(R.drawable.ic_baseline_favorite_24)
                 showToast("Adding $dataName's story to favorites")
                 true
             } else {
-                favoritedViewModel.delete(favStory)
+                favoritedViewModel.delete(DataMapper.mapEntityToDomain(favStory))
                 fabFav.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 showToast("Removing $dataName's story from favorites")
                 false
@@ -85,10 +89,10 @@ class DetailStoryActivity : AppCompatActivity() {
         return builder.toString()
     }
 
-    private fun obtainViewModel(activity: AppCompatActivity): FavoritedViewModel {
-        val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory)[FavoritedViewModel::class.java]
-    }
+//    private fun obtainViewModel(activity: AppCompatActivity): FavoritedViewModel {
+//        val factory = ViewModelFactory.getInstance(activity.application)
+//        return ViewModelProvider(activity, factory)[FavoritedViewModel::class.java]
+//    }
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
