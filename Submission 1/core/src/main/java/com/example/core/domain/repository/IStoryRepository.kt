@@ -18,6 +18,6 @@ interface IStoryRepository {
 
     fun delete(user: Story)
 
-    fun isStoryExist(id: String): Flow<Boolean>
+    suspend fun isStoryExist(id: String): Boolean
 
 }

@@ -20,6 +20,6 @@ class StoryInteractor(private val storyRepository: IStoryRepository) : StoryUseC
 
     override fun delete(user: Story) = storyRepository.delete(user)
 
-    override fun isStoryExist(id: String) = storyRepository.isStoryExist(id)
+    override suspend fun isStoryExist(id: String) = storyRepository.isStoryExist(id)
 
 }
