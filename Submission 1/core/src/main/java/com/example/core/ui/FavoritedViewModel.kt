@@ -9,9 +9,9 @@ class FavoritedViewModel(private val storyUseCase: StoryUseCase) : ViewModel() {
 
     fun getAllFavorites(): Flow<List<Story>> = storyUseCase.getAllFavorites()
 
-    fun insert(user: Story) = storyUseCase.insert(user)
+    suspend fun insert(user: Story) = storyUseCase.insert(user)
 
-    fun delete(user: Story) = storyUseCase.delete(user)
+    suspend fun delete(user: Story) = storyUseCase.delete(user)
 
     suspend fun isStoryExist(id: String): Boolean = storyUseCase.isStoryExist(id)
 }

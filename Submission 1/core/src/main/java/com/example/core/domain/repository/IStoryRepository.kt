@@ -14,9 +14,9 @@ interface IStoryRepository {
 
     fun getAllFavorites(): Flow<List<Story>>
 
-    fun insert(user: Story)
+    suspend fun insert(user: Story)
 
-    fun delete(user: Story)
+    suspend fun delete(user: Story)
 
     suspend fun isStoryExist(id: String): Boolean
 

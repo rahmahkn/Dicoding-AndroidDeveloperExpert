@@ -16,9 +16,9 @@ class StoryInteractor(private val storyRepository: IStoryRepository) : StoryUseC
 
     override fun getAllFavorites() = storyRepository.getAllFavorites()
 
-    override fun insert(user: Story) = storyRepository.insert(user)
+    override suspend fun insert(user: Story) = storyRepository.insert(user)
 
-    override fun delete(user: Story) = storyRepository.delete(user)
+    override suspend fun delete(user: Story) = storyRepository.delete(user)
 
     override suspend fun isStoryExist(id: String) = storyRepository.isStoryExist(id)
 

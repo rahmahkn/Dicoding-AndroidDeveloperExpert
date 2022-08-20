@@ -7,7 +7,6 @@ import com.example.core.data.source.local.room.FavoritedDatabase
 import com.example.core.data.source.remote.RemoteDataSource
 import com.example.core.data.source.remote.network.ApiService
 import com.example.core.domain.repository.IStoryRepository
-import com.example.core.utils.AppExecutors
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -47,6 +46,5 @@ val networkModule = module {
 val repositoryModule = module {
     single { LocalDataSource(get()) }
     single { RemoteDataSource(get()) }
-    factory { AppExecutors() }
-    single<IStoryRepository> { StoryRepository(get(), get(), get()) }
+    single<IStoryRepository> { StoryRepository(get(), get()) }
 }

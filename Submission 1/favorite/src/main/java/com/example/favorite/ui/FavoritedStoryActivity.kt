@@ -44,9 +44,9 @@ class FavoritedStoryActivity : AppCompatActivity() {
             if (storyJob.isActive) storyJob.cancel()
 
             storyJob = launch {
-                mainViewModel.getAllFavorites().collect { userList ->
+                mainViewModel.getAllFavorites().collect { listStory ->
 
-                    adapter = FavoritedAdapter(userList)
+                    adapter = FavoritedAdapter(listStory)
 
                     binding?.rvStories?.layoutManager = layoutManager
                     binding?.rvStories?.setHasFixedSize(true)

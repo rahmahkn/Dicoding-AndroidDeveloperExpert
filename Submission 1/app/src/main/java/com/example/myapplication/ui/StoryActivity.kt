@@ -17,6 +17,7 @@ import com.example.core.data.source.preference.SessionPreference
 import com.example.core.data.source.preference.TokenPreference
 import com.example.core.data.source.remote.NetworkResult
 import com.example.core.ui.StoryViewModel
+import com.example.core.utils.DataMapper
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
 import com.example.myapplication.adapter.StoryAdapter
@@ -76,7 +77,6 @@ class StoryActivity : AppCompatActivity() {
             if (storyJob.isActive) storyJob.cancel()
 
             storyJob = launch {
-
                 viewModel.getStories("Bearer $token").collect { result ->
                     when (result) {
                         is NetworkResult.Loading -> showLoading(true)
@@ -90,10 +90,11 @@ class StoryActivity : AppCompatActivity() {
                             } else {
                                 rvStories.layoutManager = LinearLayoutManager(this@StoryActivity)
 
-                                val listStoryFinal =
+                                val listStory =
                                     responseBody.listStory.sortedByDescending { it.createdAt }
-                                val listStoriesAdapter = StoryAdapter(listStoryFinal)
-                                rvStories.adapter = listStoriesAdapter
+                                val listStoryAdapter =
+                                    StoryAdapter(DataMapper.mapResponseToDomain(listStory))
+                                rvStories.adapter = listStoryAdapter
 
                             }
                         }

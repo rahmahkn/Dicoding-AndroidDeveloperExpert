@@ -16,9 +16,11 @@
     <application android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".ui.FavoritedStoryActivity"
+            android:label="Favorite Stories"
             android:exported="false" />
         <activity
             android:name=".ui.DetailStoryActivity"
+            android:label="Detail Story"
             android:exported="false" />
     </application>
 

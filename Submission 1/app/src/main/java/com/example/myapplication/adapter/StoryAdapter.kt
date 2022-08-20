@@ -10,12 +10,12 @@ import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.core.data.source.remote.network.ListStoryItem
+import com.example.core.domain.model.Story
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
 import java.text.SimpleDateFormat
 
-class StoryAdapter(private val listStories: List<ListStoryItem>) :
+class StoryAdapter(private val listStories: List<Story>) :
     RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) =

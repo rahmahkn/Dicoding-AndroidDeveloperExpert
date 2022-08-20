@@ -8,9 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.example.core.data.source.local.entity.FavoritedStory
+import com.example.core.domain.model.Story
 import com.example.core.ui.FavoritedViewModel
-import com.example.core.utils.DataMapper
 import com.example.favorite.R
 import com.example.favorite.databinding.ActivityDetailStoryBinding
 import kotlinx.coroutines.Job
@@ -23,11 +22,18 @@ class DetailStoryActivity : AppCompatActivity() {
     private lateinit var tvNama: TextView
     private lateinit var tvDeskripsi: TextView
     private lateinit var tvTime: TextView
+    private lateinit var ivFav: ImageView
+    private lateinit var favStory: Story
+
+    private lateinit var dataId: String
+    private lateinit var dataImage: String
+    private lateinit var dataName: String
+    private lateinit var dataDesc: String
+    private lateinit var dataTime: String
 
     private val favoritedViewModel: FavoritedViewModel by viewModel()
     private var job: Job = Job()
-
-    private lateinit var favStory: FavoritedStory
+    private var updateJob: Job = Job()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,22 +44,23 @@ class DetailStoryActivity : AppCompatActivity() {
         tvNama = binding.detailNama
         tvDeskripsi = binding.detailDeskripsi
         tvTime = binding.detailWaktu
+        ivFav = binding.detailFavorite
 
-        setFavorite()
+        dataId = intent.getStringExtra("mId")!!
+        dataImage = intent.getStringExtra("mPhotoUrl")!!
+        dataName = intent.getStringExtra("mName")!!
+        dataDesc = intent.getStringExtra("mDescription")!!
+        dataTime = intent.getStringExtra("mDate")!!
+
+        setDetailStory()
+        updateFavorite()
     }
 
-    private fun setFavorite() {
-
-        val dataId = intent.getStringExtra("mId")!!
-        val dataImage = intent.getStringExtra("mPhotoUrl")!!
-        val dataName = intent.getStringExtra("mName")!!
-        val dataDesc = intent.getStringExtra("mDescription")!!
-        val dataTime = intent.getStringExtra("mDate")!!
-
+    private fun setDetailStory() {
         lifecycleScope.launchWhenResumed {
             if (job.isActive) job.cancel()
             job = launch {
-                var isFavorited = favoritedViewModel.isStoryExist(dataId)
+                val isFavorited = favoritedViewModel.isStoryExist(dataId)
 
                 Glide.with(this@DetailStoryActivity)
                     .load(dataImage)
@@ -68,23 +75,28 @@ class DetailStoryActivity : AppCompatActivity() {
                 )
                 tvTime.text = "Posted on $dataTime"
 
-                val fabFav = binding.detailFavorite
+                if (isFavorited) ivFav.setImageResource(R.drawable.ic_baseline_favorite_24)
+            }
+        }
+    }
 
-                if (isFavorited) fabFav.setImageResource(R.drawable.ic_baseline_favorite_24)
+    private fun updateFavorite() {
+        binding.detailFavorite.setOnClickListener {
+            favStory = Story(dataId, dataImage, dataTime, dataName, dataDesc)
 
-                binding.detailFavorite.setOnClickListener {
-                    favStory = FavoritedStory(dataId, dataImage, dataTime, dataName, dataDesc)
+            lifecycleScope.launchWhenResumed {
+                val isFavorited = favoritedViewModel.isStoryExist(dataId)
 
-                    isFavorited = if (!isFavorited) {
-                        favoritedViewModel.insert(DataMapper.mapEntityToDomain(favStory))
-                        fabFav.setImageResource(R.drawable.ic_baseline_favorite_24)
+                if (updateJob.isActive) updateJob.cancel()
+                updateJob = launch {
+                    if (!isFavorited) {
+                        favoritedViewModel.insert(favStory)
+                        ivFav.setImageResource(R.drawable.ic_baseline_favorite_24)
                         showToast("Adding $dataName's story to favorites")
-                        true
                     } else {
-                        favoritedViewModel.delete(DataMapper.mapEntityToDomain(favStory))
-                        fabFav.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                        favoritedViewModel.delete(favStory)
+                        ivFav.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                         showToast("Removing $dataName's story from favorites")
-                        false
                     }
                 }
             }

@@ -9,9 +9,15 @@ class LocalDataSource(private val favoritedDao: FavoritedDao) {
 
     fun getAllFavorites() = favoritedDao.getAllFavorites()
 
-    fun insert(user: FavoritedStory) = favoritedDao.insert(user)
+    suspend fun insert(story: FavoritedStory) =
+        withContext(Dispatchers.IO) {
+            favoritedDao.insert(story)
+        }
 
-    fun delete(user: FavoritedStory) = favoritedDao.delete(user)
+    suspend fun delete(story: FavoritedStory) =
+        withContext(Dispatchers.IO) {
+            favoritedDao.delete(story)
+        }
 
     suspend fun isStoryExist(id: String): Boolean =
         withContext(Dispatchers.IO) {
