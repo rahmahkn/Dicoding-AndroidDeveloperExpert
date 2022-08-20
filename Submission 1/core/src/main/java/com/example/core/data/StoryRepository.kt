@@ -3,8 +3,8 @@ package com.example.core.data
 import com.example.core.data.source.local.LocalDataSource
 import com.example.core.data.source.remote.NetworkResult
 import com.example.core.data.source.remote.RemoteDataSource
-import com.example.core.data.source.remote.network.GetStoryResponse
-import com.example.core.data.source.remote.network.LoginResponse
+import com.example.core.domain.model.GetStoryModel
+import com.example.core.domain.model.LoginModel
 import com.example.core.domain.model.Story
 import com.example.core.domain.repository.IStoryRepository
 import com.example.core.utils.DataMapper
@@ -15,14 +15,14 @@ class StoryRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
 ) : IStoryRepository {
-    override suspend fun getStories(authHeader: String): Flow<NetworkResult<GetStoryResponse>> {
+    override suspend fun getStories(authHeader: String): Flow<NetworkResult<GetStoryModel>> {
         return remoteDataSource.getStories(authHeader)
     }
 
     override suspend fun postLogin(
         email: String,
         password: String
-    ): Flow<NetworkResult<LoginResponse>> {
+    ): Flow<NetworkResult<LoginModel>> {
         return remoteDataSource.postLogin(email, password)
     }
 

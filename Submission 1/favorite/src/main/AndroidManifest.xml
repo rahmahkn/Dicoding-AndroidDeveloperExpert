@@ -16,12 +16,12 @@
     <application android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".ui.FavoritedStoryActivity"
-            android:label="Favorite Stories"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Favorite Stories" />
         <activity
             android:name=".ui.DetailStoryActivity"
-            android:label="Detail Story"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Detail Story" />
     </application>
 
 </manifest>

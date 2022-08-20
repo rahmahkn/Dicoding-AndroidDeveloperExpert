@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.ui.FavoritedViewModel
 import com.example.favorite.R
 import com.example.favorite.adapter.FavoritedAdapter
 import com.example.favorite.databinding.ActivityFavoriteStoryBinding
+import com.example.favorite.di.favoritedViewModelModule
+import com.example.favorite.viewmodel.FavoritedViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class FavoritedStoryActivity : AppCompatActivity() {
     private lateinit var rvUsers: RecyclerView
@@ -26,6 +28,8 @@ class FavoritedStoryActivity : AppCompatActivity() {
 
         _activityFavoriteBinding = ActivityFavoriteStoryBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+
+        loadKoinModules(favoritedViewModelModule)
 
         rvUsers = findViewById(R.id.rv_stories)
 

@@ -9,12 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.core.domain.model.Story
-import com.example.core.ui.FavoritedViewModel
 import com.example.favorite.R
 import com.example.favorite.databinding.ActivityDetailStoryBinding
+import com.example.favorite.di.favoritedViewModelModule
+import com.example.favorite.viewmodel.FavoritedViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class DetailStoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailStoryBinding
@@ -39,6 +41,8 @@ class DetailStoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailStoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadKoinModules(favoritedViewModelModule)
 
         ivFoto = binding.detailFoto
         tvNama = binding.detailNama

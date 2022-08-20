@@ -3,6 +3,7 @@ package com.example.core.data.source.remote
 import com.example.core.data.source.remote.network.ApiService
 import com.example.core.data.source.remote.network.GetStoryResponse
 import com.example.core.data.source.remote.network.LoginResponse
+import com.example.core.utils.DataMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -24,7 +25,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                 )
 
             when (response.code()) {
-                200 -> emit(NetworkResult.Success(response.body()!!))
+                200 -> emit(NetworkResult.Success(DataMapper.mapResponseToDomain(response.body()!!)))
 
                 else -> emit(NetworkResult.Error(getErrorMessageFromApi(response, "message")))
             }
@@ -46,7 +47,7 @@ class RemoteDataSource(private val apiService: ApiService) {
                 )
 
             when (response.code()) {
-                200 -> emit(NetworkResult.Success(response.body()!!))
+                200 -> emit(NetworkResult.Success(DataMapper.mapResponseToDomain(response.body()!!)))
 
                 else -> emit(NetworkResult.Error(getErrorMessageFromApi(response, "message")))
             }

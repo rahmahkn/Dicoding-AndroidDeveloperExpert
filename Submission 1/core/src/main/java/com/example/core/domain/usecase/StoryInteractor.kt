@@ -1,17 +1,21 @@
 package com.example.core.domain.usecase
 
 import com.example.core.data.source.remote.NetworkResult
-import com.example.core.data.source.remote.network.GetStoryResponse
+import com.example.core.domain.model.GetStoryModel
+import com.example.core.domain.model.LoginModel
 import com.example.core.domain.model.Story
 import com.example.core.domain.repository.IStoryRepository
 import kotlinx.coroutines.flow.Flow
 
 class StoryInteractor(private val storyRepository: IStoryRepository) : StoryUseCase {
 
-    override suspend fun getStories(authHeader: String): Flow<NetworkResult<GetStoryResponse>> =
+    override suspend fun getStories(authHeader: String): Flow<NetworkResult<GetStoryModel>> =
         storyRepository.getStories(authHeader)
 
-    override suspend fun postLogin(email: String, password: String) =
+    override suspend fun postLogin(
+        email: String,
+        password: String
+    ): Flow<NetworkResult<LoginModel>> =
         storyRepository.postLogin(email, password)
 
     override fun getAllFavorites() = storyRepository.getAllFavorites()

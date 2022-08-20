@@ -1,4 +1,4 @@
-package com.example.core.ui
+package com.example.myapplication.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.core.domain.usecase.StoryUseCase
