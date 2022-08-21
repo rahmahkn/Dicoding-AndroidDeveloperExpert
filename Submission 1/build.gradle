@@ -21,6 +21,9 @@ buildscript {
         okhttp_version = "4.9.0"
         moshi_version = "1.13.0"
         room_version = "2.4.3"
+        leakcanary_version = "2.4"
+        sqlchiper_version = "4.4.0"
+        sqlite_version = "2.2.0"
     }
 }
 

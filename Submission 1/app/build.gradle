@@ -21,7 +21,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -65,5 +65,8 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-viewmodel:$koin_version"
     implementation "io.insert-koin:koin-core-ext:$koin_version"
     implementation "io.insert-koin:koin-androidx-scope:$koin_version"
+
+    // Leak canary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
 
 }

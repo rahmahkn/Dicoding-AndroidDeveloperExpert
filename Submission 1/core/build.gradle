@@ -79,4 +79,8 @@ dependencies {
     implementation "io.insert-koin:koin-core-ext:$koin_version"
     implementation "io.insert-koin:koin-androidx-scope:$koin_version"
 
+    // SQL Chiper
+    implementation "net.zetetic:android-database-sqlcipher:$sqlchiper_version"
+    implementation "androidx.sqlite:sqlite-ktx:$sqlite_version"
+
 }

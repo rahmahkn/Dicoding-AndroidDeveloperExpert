@@ -17,26 +17,15 @@
         android:paddingVertical="15dp"
         android:paddingBottom="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingHorizontal="15dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_account_circle_24" />
-
-            <TextView
-                android:id="@+id/item_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:textStyle="bold"
-                tools:text="Name" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            card_view:drawableStartCompat="@drawable/ic_baseline_account_circle_24"
+            tools:text="Name" />
 
         <ImageView
             android:id="@+id/item_image"
