@@ -20,9 +20,9 @@ import org.koin.core.context.loadKoinModules
 
 class DetailStoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailStoryBinding
-    private lateinit var ivFoto: ImageView
-    private lateinit var tvNama: TextView
-    private lateinit var tvDeskripsi: TextView
+    private lateinit var ivPhoto: ImageView
+    private lateinit var tvName: TextView
+    private lateinit var tvDescription: TextView
     private lateinit var tvTime: TextView
     private lateinit var ivFav: ImageView
     private lateinit var favStory: Story
@@ -44,10 +44,10 @@ class DetailStoryActivity : AppCompatActivity() {
 
         loadKoinModules(favoritedViewModelModule)
 
-        ivFoto = binding.detailFoto
-        tvNama = binding.detailNama
-        tvDeskripsi = binding.detailDeskripsi
-        tvTime = binding.detailWaktu
+        ivPhoto = binding.detailPhoto
+        tvName = binding.detailName
+        tvDescription = binding.detailDescription
+        tvTime = binding.detailTime
         ivFav = binding.detailFavorite
 
         dataId = intent.getStringExtra("mId")!!
@@ -69,9 +69,9 @@ class DetailStoryActivity : AppCompatActivity() {
                 Glide.with(this@DetailStoryActivity)
                     .load(dataImage)
                     .placeholder(R.drawable.loading)
-                    .into(binding.detailFoto)
-                tvNama.text = dataName
-                tvDeskripsi.text = Html.fromHtml(
+                    .into(binding.detailPhoto)
+                tvName.text = dataName
+                tvDescription.text = Html.fromHtml(
                     generateDesc(
                         dataName,
                         dataDesc

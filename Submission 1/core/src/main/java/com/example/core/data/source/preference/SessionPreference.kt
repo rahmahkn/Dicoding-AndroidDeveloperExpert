@@ -16,7 +16,4 @@ class SessionPreference(context: Context) {
         editor.apply()
     }
 
-    fun getSession(): String {
-        return preference1.getString(SESSION, "").toString()
-    }
 }

@@ -14,6 +14,7 @@ import com.example.core.domain.model.Story
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
 import java.text.SimpleDateFormat
+import java.util.*
 
 class StoryAdapter(private val listStories: List<Story>) :
     RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
@@ -32,8 +33,8 @@ class StoryAdapter(private val listStories: List<Story>) :
         viewHolder.tvName.text = listStories[position].name
         viewHolder.tvDescription.text = listStories[position].description
 
-        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-        val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
+        val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
         val formattedDate = formatter.format(parser.parse(listStories[position].createdAt)!!)
         viewHolder.tvTime.text = formattedDate
 
@@ -52,10 +53,10 @@ class StoryAdapter(private val listStories: List<Story>) :
             val optionsCompat: ActivityOptionsCompat =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(
                     it.context as Activity,
-                    androidx.core.util.Pair(viewHolder.ivImage, "foto"),
-                    androidx.core.util.Pair(viewHolder.tvName, "nama"),
-                    androidx.core.util.Pair(viewHolder.tvDescription, "deskripsi"),
-                    androidx.core.util.Pair(viewHolder.tvTime, "waktu")
+                    androidx.core.util.Pair(viewHolder.ivImage, "photo"),
+                    androidx.core.util.Pair(viewHolder.tvName, "name"),
+                    androidx.core.util.Pair(viewHolder.tvDescription, "description"),
+                    androidx.core.util.Pair(viewHolder.tvTime, "time")
                 )
             it.context.startActivity(intent, optionsCompat.toBundle())
         }

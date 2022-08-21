@@ -7,14 +7,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FavoritedDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(user: FavoritedStory)
+    suspend fun insert(user: FavoritedStory)
 
     @Delete
-    fun delete(user: FavoritedStory)
+    suspend fun delete(user: FavoritedStory)
 
     @Query("SELECT * FROM favoritedStory")
     fun getAllFavorites(): Flow<List<FavoritedStory>>
 
     @Query("SELECT EXISTS(SELECT * FROM favoritedStory WHERE id = :id)")
-    fun isStoryExist(id: String): Boolean
+    suspend fun isStoryExist(id: String): Boolean
 }

@@ -53,10 +53,10 @@ class FavoritedAdapter(private val listFavorited: List<Story>) :
                 val optionsCompat: ActivityOptionsCompat =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
                         it.context as Activity,
-                        androidx.core.util.Pair(binding.itemImage, "foto"),
-                        androidx.core.util.Pair(binding.itemName, "nama"),
-                        androidx.core.util.Pair(binding.itemDescription, "deskripsi"),
-                        androidx.core.util.Pair(binding.itemTime, "waktu")
+                        androidx.core.util.Pair(binding.itemImage, "photo"),
+                        androidx.core.util.Pair(binding.itemName, "name"),
+                        androidx.core.util.Pair(binding.itemDescription, "description"),
+                        androidx.core.util.Pair(binding.itemTime, "time")
                     )
                 it.context.startActivity(intent, optionsCompat.toBundle())
             }

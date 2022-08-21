@@ -24,24 +24,24 @@
                 android:src="@drawable/ic_baseline_account_circle_24" />
 
             <TextView
-                android:id="@+id/detail_nama"
+                android:id="@+id/detail_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
                 android:textStyle="bold"
-                android:transitionName="nama"
-                tools:text="Nama" />
+                android:transitionName="name"
+                tools:text="Name" />
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/detail_foto"
+            android:id="@+id/detail_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/detail_foto"
+            android:contentDescription="@string/detail_photo"
             android:scaleType="fitCenter"
             android:src="@drawable/loading"
-            android:transitionName="foto" />
+            android:transitionName="photo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,24 +57,24 @@
                 android:src="@drawable/ic_baseline_favorite_border_24" />
 
             <TextView
-                android:id="@+id/detail_waktu"
+                android:id="@+id/detail_time"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:gravity="center_vertical|end"
                 android:textSize="10sp"
                 android:textStyle="italic"
-                android:transitionName="waktu"
+                android:transitionName="time"
                 tools:text="Posted on 22/04/2022 18:00" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/detail_deskripsi"
+            android:id="@+id/detail_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:transitionName="deskripsi"
-            tools:text="Deskripsi" />
+            android:transitionName="description"
+            tools:text="Description" />
 
     </LinearLayout>
 </ScrollView>

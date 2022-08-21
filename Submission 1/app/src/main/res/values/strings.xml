@@ -4,7 +4,8 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="name">Name</string>
-    <string name="detail_foto">Detail Foto</string>
+    <string name="detail_photo">Detail Photo</string>
     <string name="favorite">favorite</string>
     <string name="title_favorite">Favorite</string>
+    <string name="item_image">Item image</string>
 </resources>

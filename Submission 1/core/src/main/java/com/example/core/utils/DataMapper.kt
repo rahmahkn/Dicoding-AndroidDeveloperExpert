@@ -29,7 +29,7 @@ object DataMapper {
         photoUrl = it.photoUrl
     )
 
-    fun mapResponseToDomain(input: List<ListStoryItem>): List<Story> =
+    private fun mapResponseToDomain(input: List<ListStoryItem>): List<Story> =
         input.map {
             Story(
                 id = it.id,
