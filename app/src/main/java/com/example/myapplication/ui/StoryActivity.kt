@@ -2,6 +2,7 @@ package com.example.myapplication.ui
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -69,6 +70,19 @@ class StoryActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onBackPressed() {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q &&
+            isTaskRoot &&
+            (supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.backStackEntryCount
+                ?: 0) == 0 &&
+            supportFragmentManager.backStackEntryCount == 0
+        ) {
+            finishAfterTransition()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     private fun getStories(token: String) {
         showLoading(true)
 
@@ -119,7 +133,7 @@ class StoryActivity : AppCompatActivity() {
                         is NetworkResult.Loading -> {
                             showLoading(true)
 
-                            Toast.makeText(this@StoryActivity, "Loading..", Toast.LENGTH_SHORT)
+                            Toast.makeText(applicationContext, "Loading..", Toast.LENGTH_SHORT)
                                 .show()
                         }
 
