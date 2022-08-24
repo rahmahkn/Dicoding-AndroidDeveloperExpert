@@ -20,8 +20,16 @@
             android:label="Favorite Stories" />
         <activity
             android:name=".ui.DetailStoryActivity"
-            android:exported="false"
-            android:label="Detail Story" />
+            android:exported="true"
+            android:label="Detail Story">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="detail"
+                    android:scheme="storyapp" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

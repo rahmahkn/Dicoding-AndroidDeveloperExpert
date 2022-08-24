@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.core.ui.StoryAdapter
 import com.example.favorite.R
-import com.example.favorite.adapter.FavoritedAdapter
 import com.example.favorite.databinding.ActivityFavoriteStoryBinding
 import com.example.favorite.di.favoritedViewModelModule
 import com.example.favorite.viewmodel.FavoritedViewModel
@@ -19,7 +19,7 @@ class FavoritedStoryActivity : AppCompatActivity() {
     private lateinit var rvUsers: RecyclerView
     private var _activityFavoriteBinding: ActivityFavoriteStoryBinding? = null
     private val binding get() = _activityFavoriteBinding
-    private lateinit var adapter: FavoritedAdapter
+    private lateinit var adapter: StoryAdapter
     private val mainViewModel: FavoritedViewModel by viewModel()
     private var storyJob: Job = Job()
 
@@ -50,7 +50,7 @@ class FavoritedStoryActivity : AppCompatActivity() {
             storyJob = launch {
                 mainViewModel.getAllFavorites().collect { listStory ->
 
-                    adapter = FavoritedAdapter(listStory)
+                    adapter = StoryAdapter(listStory)
 
                     binding?.rvStories?.layoutManager = layoutManager
                     binding?.rvStories?.setHasFixedSize(true)

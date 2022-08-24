@@ -1,7 +1,8 @@
-package com.example.myapplication.adapter
+package com.example.core.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +11,15 @@ import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.core.R
 import com.example.core.domain.model.Story
-import com.example.myapplication.BuildConfig
-import com.example.myapplication.R
 import java.text.SimpleDateFormat
 import java.util.*
 
 class StoryAdapter(private val listStories: List<Story>) :
     RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
+
+    private lateinit var formattedDate: String
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) =
         ViewHolder(
@@ -35,15 +37,18 @@ class StoryAdapter(private val listStories: List<Story>) :
 
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
         val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
-        val formattedDate = formatter.format(parser.parse(listStories[position].createdAt)!!)
+
+        formattedDate = try {
+            formatter.format(parser.parse(listStories[position].createdAt)!!)
+        } catch (e: Exception) {
+            listStories[position].createdAt
+        }
         viewHolder.tvTime.text = formattedDate
 
         viewHolder.itemView.setOnClickListener {
-            val intent = Intent()
-            intent.setClassName(
-                BuildConfig.APPLICATION_ID,
-                "com.example.favorite.ui.DetailStoryActivity"
-            )
+            val uri = Uri.parse("storyapp://detail")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+
             intent.putExtra("mId", listStories[position].id)
             intent.putExtra("mPhotoUrl", listStories[position].photoUrl)
             intent.putExtra("mName", listStories[position].name)

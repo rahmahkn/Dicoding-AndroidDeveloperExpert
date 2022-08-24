@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core.data.source.preference.SessionPreference
 import com.example.core.data.source.preference.TokenPreference
 import com.example.core.data.source.remote.NetworkResult
+import com.example.core.ui.StoryAdapter
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
-import com.example.myapplication.adapter.StoryAdapter
 import com.example.myapplication.viewmodel.StoryViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
